@@ -33,6 +33,7 @@ namespace MyTest.Entities
                 //b.HasNoKey();
                 b.ToTable("User");
             });
+            modelBuilder.HasSequence<int>("Id").StartsAt(1).IncrementsBy(1);
         }
     }
 }
