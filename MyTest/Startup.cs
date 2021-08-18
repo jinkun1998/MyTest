@@ -1,10 +1,12 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MyTest.Entities;
+using Public.Core.Database;
+using Public.Core.Swagger;
+using Public.Service.User;
 
 namespace MyTest
 {
@@ -20,14 +22,11 @@ namespace MyTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().AddFluentValidation();
+            services.AddDatabaseService(Configuration);
+            services.AddSwaggerService();
+            services.AddUserService();
             services.AddControllers();
-            var connectionString = Configuration.GetConnectionString("TestDb");
-            services.AddDbContext<MyDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddSwaggerGen(s => s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
-            {
-                Version = "v12",
-                Title = "MyTest",
-            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,11 +48,7 @@ namespace MyTest
                 endpoints.MapControllers();
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(s =>
-            {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            });
+            app.UserSwaggerService(env);
         }
     }
 }
