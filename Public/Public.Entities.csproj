@@ -8,4 +8,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SQLCMD\MyTestSQL.sql" />
+    <None Remove="SQLCMD\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SQLCMD\MyTestSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SQLCMD\" />
+  </ItemGroup>
 </Project>
