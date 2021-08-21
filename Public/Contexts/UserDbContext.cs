@@ -9,7 +9,7 @@ namespace Public.Entities.Contexts
 {
     public class UserDbContext : DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base (options) { }
+        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -23,6 +23,8 @@ namespace Public.Entities.Contexts
             modelBuilder.Entity<User>(b =>
             {
                 b.ToTable("User");
+                b.HasKey(e => e.Id);
+                b.Property(e => e.Id).UseIdentityColumn<int>(1, 1);
             });
         }
     }

@@ -8,7 +8,7 @@ namespace Public.Entities.Models
 {
     public class User
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), NotMapped]
         public int Id { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }

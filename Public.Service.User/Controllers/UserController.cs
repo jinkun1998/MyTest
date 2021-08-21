@@ -21,7 +21,7 @@ namespace Public.Service.User.Controllers
         [Route("AddUser")]
         public IActionResult AddUser([FromBody] ApiUserModel apiUserModel)
         {
-            (ApiUserModel returnUser, string result, int statusCode) = _userService.AddUser(apiUserModel);
+            (ApiUserModel returnUser, string result, int statusCode) = _userService.AddUser_FromSqlRaw(apiUserModel);
             if (returnUser == null)
                 return StatusCode(statusCode, result);
             return StatusCode(statusCode, returnUser);
@@ -31,7 +31,7 @@ namespace Public.Service.User.Controllers
         [Route("EditUser")]
         public IActionResult EditUser([FromBody] ApiUserModel apiUserModel)
         {
-            (ApiUserModel returnUser, string result, int statusCode) = _userService.EditUser(apiUserModel);
+            (ApiUserModel returnUser, string result, int statusCode) = _userService.EditUser_FromSqlRaw(apiUserModel);
             if (returnUser == null)
                 return StatusCode(statusCode, result);
             return StatusCode(statusCode, returnUser);
@@ -41,7 +41,7 @@ namespace Public.Service.User.Controllers
         [Route("DeleteUser")]
         public IActionResult DeleteUser(string username)
         {
-            (ApiUserModel returnUser, string result, int statusCode) = _userService.DeleteUser(username);
+            (ApiUserModel returnUser, string result, int statusCode) = _userService.DeleteUser_FromSqlRaw(username);
             if (returnUser == null)
                 return StatusCode(statusCode, result);
             return StatusCode(statusCode, returnUser);
@@ -51,7 +51,7 @@ namespace Public.Service.User.Controllers
         [Route("GetUser")]
         public IActionResult GetUser(string username)
         {
-            (ApiUserModel returnUser, string result, int statusCode) = _userService.GetUser(username);
+            (ApiUserModel returnUser, string result, int statusCode) = _userService.GetUser_FromSqlRaw(username);
             if (returnUser == null)
                 return StatusCode(statusCode, result);
             return StatusCode(statusCode, returnUser);
@@ -61,7 +61,7 @@ namespace Public.Service.User.Controllers
         [Route("GetAllUser")]
         public IActionResult GetAllUser()
         {
-            (List<ApiUserModel> returnUsers, string result, int statusCode) = _userService.GetAllUsers();
+            (List<ApiUserModel> returnUsers, string result, int statusCode) = _userService.GetAllUsers_FromSqlRaw();
             return StatusCode(statusCode, returnUsers);
         }
     }
