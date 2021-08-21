@@ -10,12 +10,12 @@
 
   <ItemGroup>
     <None Remove="SQLCMD\MyTestSQL.sql" />
-    <None Remove="SQLCMD\" />
+    <None Remove="SqlCmd\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SQLCMD\MyTestSQL.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SQLCMD\" />
+    <Folder Include="SqlCmd\" />
   </ItemGroup>
 </Project>
